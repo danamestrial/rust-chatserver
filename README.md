@@ -1,10 +1,12 @@
 # rust-chatserver
 ICCS 311 Project <br/>
-<b>Project name</b>:  Circle OpenChat  — Code name: <b>Don’t think, just do </b><br/>
+## Project name
+Circle OpenChat  — Code name: <b>Don’t think, just do </b>
   
-<b>Project Plan</b>: To build a chat web server that has features like, ‘ Line OpenchatTM ‘,  but with other features like grouping, tagging, ability to have different roles and more. <br/>
+## Project Plan
+To build a chat web server that has features like, ‘ Line OpenchatTM ‘,  but with other features like grouping, tagging, ability to have different roles and more. <br/>
   
-<b>Project features/Scope:</b>
+## Project features/Scope
 * Starting the framework of the chat room
 * Designing/Creating *beautiful* GUIs for it
 * Setting the role for each user
