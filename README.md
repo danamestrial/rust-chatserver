@@ -16,3 +16,7 @@ To build a chat web server that has features like, ‘ Line OpenchatTM ‘,  but
 * Inviting people to a group via code and/or link
 * Ability to connect and access a room and remove people
 * Persistent messages in a room (storing all the messages in a db and the ability to parse everything back when the room is restarted)
+
+## Prototype
+Our team created a interactive prototype of our chat server project on Figma:
+https://www.figma.com/proto/l9W7tZHApIOcqplj6tWWtP/Circle-Chat-Server?node-id=19%3A10&scaling=contain&page-id=0%3A1&starting-point-node-id=19%3A10
