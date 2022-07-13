@@ -1,0 +1,11 @@
+/Users/airbus/Documents/rust-chatserver/target/debug/deps/generic_array-ebb5ea82e1532a0a.rmeta: /Users/airbus/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.5/src/lib.rs /Users/airbus/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.5/src/hex.rs /Users/airbus/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.5/src/impls.rs /Users/airbus/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.5/src/arr.rs /Users/airbus/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.5/src/functional.rs /Users/airbus/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.5/src/iter.rs /Users/airbus/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.5/src/sequence.rs
+
+/Users/airbus/Documents/rust-chatserver/target/debug/deps/generic_array-ebb5ea82e1532a0a.d: /Users/airbus/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.5/src/lib.rs /Users/airbus/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.5/src/hex.rs /Users/airbus/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.5/src/impls.rs /Users/airbus/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.5/src/arr.rs /Users/airbus/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.5/src/functional.rs /Users/airbus/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.5/src/iter.rs /Users/airbus/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.5/src/sequence.rs
+
+/Users/airbus/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.5/src/lib.rs:
+/Users/airbus/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.5/src/hex.rs:
+/Users/airbus/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.5/src/impls.rs:
+/Users/airbus/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.5/src/arr.rs:
+/Users/airbus/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.5/src/functional.rs:
+/Users/airbus/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.5/src/iter.rs:
+/Users/airbus/.cargo/registry/src/github.com-1ecc6299db9ec823/generic-array-0.14.5/src/sequence.rs:
