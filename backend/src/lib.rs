@@ -1,6 +1,7 @@
 #[macro_use]
 extern crate diesel;
 extern crate dotenv;
+extern crate bcrypt;
 
 pub mod schema;
 pub mod models;
@@ -30,16 +31,15 @@ pub fn authenticate(other_username: String, other_password: String)
 pub fn add_user<'a>(conn: &PgConnection, other_username: &'a str, other_password: &'a str)
 -> Post {
     use schema::posts;
+    use bcrypt::{DEFAULT_COST, hash, verify};
 
     let new_user = NewUser {
         username: other_username,
-        password: other_password,
+        password: &hash(other_password, DEFAULT_COST).unwrap(),
     };
 
-    // Ok(
     diesel::insert_into(posts::table)
         .values(&new_user)
         .get_result(conn)
         .expect("Error saving new post")
-    // )
 }
