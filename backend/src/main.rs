@@ -1,36 +1,38 @@
 #[macro_use] extern crate rocket;
 
+use rocket::serde::json::Json;
+use rocket::serde::Deserialize;
 use rocket::response::Redirect;
 
 #[get("/")]
 fn index() -> &'static str {
-    "Hello, world!"
+    "pinged"
 }
 
-/* This section is for authetication system
- * Uncomment when you start to implement this
+#[post("/login", format = "json", data = "<logininfo>")]
+fn login(logininfo: Json<LoginInfo>) -> Json<bool>{
+    println!("{:?}",logininfo);
 
-#[get("/login")]
-fn login() -> Template { /* .. */ }
-
-#[get("/admin")]
-fn admin_panel(admin: AdminUser) -> &'static str {
-    "Hello, administrator. This is the admin panel!"
+    //get password from database using username
+    Json(true)
 }
 
-#[get("/admin", rank = 2)]
-fn admin_panel_user(user: User) -> &'static str {
-    "Sorry, you must be an administrator to access this page."
-}
+// Json Format
+// {
+//     "username": "airbus",
+//     "password": "yes1234"
+// }
 
-#[get("/admin", rank = 3)]
-fn admin_panel_redirect() -> Redirect {
-    Redirect::to(uri!(login))
+#[derive(Deserialize, Debug)]
+struct LoginInfo {
+    username: String,
+    password: String,
 }
-
-*/
 
 #[launch]
 fn rocket() ->  _ {
-    rocket::build().mount("/", routes![index])
+    rocket::build().mount("/api", routes![
+        index,
+        login,
+        ])
 }

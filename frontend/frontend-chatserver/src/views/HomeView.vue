@@ -92,6 +92,8 @@
 </template>
 
 <script>
+  import axios from 'axios';
+
   export default {
     name: 'HelloWorld',
 
@@ -147,5 +149,18 @@
         },
       ],
     }),
+
+    methods: {
+    async check() {
+      const response = await axios
+      .get("/api/");
+
+      console.log(response.data);
+    }
+  },
+
+  beforeMount(){
+    this.check()
+ },
   }
 </script>
