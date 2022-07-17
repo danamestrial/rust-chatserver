@@ -1,6 +1,6 @@
 <template>
    <v-app id="login">
-      <v-content>
+      <v-main>
          <v-container fluid fill-height>
             <v-layout align-center justify-center>
                <v-flex xs12 sm8 md4 >
@@ -23,7 +23,7 @@
                             >
 
                            <v-text-field
-                              name="Username"
+                              v-model="username"
                               label="Username"
                               maxlength="15"
                               counter="15"
@@ -38,8 +38,7 @@
                                 md="40"
                             >
                            <v-text-field
-                              id="password"
-                              name="password"
+                              v-model="password"
                               label="Password"
                               filled
                               rounded
@@ -72,7 +71,7 @@
                             class="ma-2 white--text"
                             rounded
                             x-large
-                            to="/">Let's go!
+                            @click="login()">Let's go!
                             </v-btn>
                             </v-col>
                      </v-card-actions>
@@ -80,7 +79,7 @@
                </v-flex>
             </v-layout>
          </v-container>
-      </v-content>
+      </v-main>
    </v-app>
 </template>
 
