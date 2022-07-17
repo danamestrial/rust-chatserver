@@ -43,6 +43,18 @@
   </v-app>
 </template>
 
+<script>
+
+export default {
+  name: "App",
+  data: () => ({
+    api_check: "not ping",
+  }),
+
+  
+}
+</script>
+
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

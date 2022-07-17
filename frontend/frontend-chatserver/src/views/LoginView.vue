@@ -85,12 +85,50 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
    name: "LoginPage",
-   props: {
-      source: String,
-   },
+   
+   data: () => ({
+    username: "",
+    password: "",
+   }),
+
+   methods: {
+    async login() {
+
+        const response = await axios
+        .post("/api/login", {
+            username: this.username,
+            password: this.password
+        })
+        .catch((error) => {
+            if (error.response) {
+                console.warn("something went wrong");
+            }
+        });
+        console.log(response.data);
+
+        if (response.data === true) {
+            window.location = "/";
+        }
+    },
+
+    async register() {
+
+        const response = await axios
+        .post("/api/register", {
+            username: this.username,
+            password: this.password
+        })
+        .catch((error) => {
+            if (error.response) {
+                console.warn("something went wrong");
+            }
+        });
+        console.log(response.data);
+    }
+   }
 };
 </script>
-
-<style></style>
