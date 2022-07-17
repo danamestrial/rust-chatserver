@@ -3,11 +3,9 @@
       <v-content>
          <v-container fluid fill-height>
             <v-layout align-center justify-center>
-               <v-flex xs12 sm8 md4>
+               <v-flex xs12 sm8 md4 >
                   <v-card class="elevation-12">
-                     <v-toolbar dark color="green">
-                        <v-toolbar-title>LOGIN</v-toolbar-title>
-                     </v-toolbar>
+                    <h1>LOGIN</h1>
                      <v-card-text>
                         <v-form>
                             <v-col
@@ -42,6 +40,19 @@
                            </v-col>
                         </v-form>
                      </v-card-text>
+                    <v-row
+                        align="center"
+                        justify="space-around"
+                    >
+                    <v-btn
+                    text
+                    color="red"
+                    >Register here</v-btn>
+                    <v-btn
+                    text
+                    color="red"
+                    >Forgot your password?</v-btn>
+                    </v-row>
                      <v-card-actions>
                         <v-spacer></v-spacer>
                             <v-col
