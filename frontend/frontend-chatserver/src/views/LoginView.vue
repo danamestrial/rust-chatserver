@@ -1,36 +1,86 @@
 <template>
-    <v-app id="inspire">
-      <v-main>
+   <v-app id="login">
+      <v-content>
          <v-container fluid fill-height>
             <v-layout align-center justify-center>
-               <v-flex xs12 sm8 md4>
+               <v-flex xs12 sm8 md4 >
                   <v-card class="elevation-12">
-                     <v-toolbar dark color="primary">
-                        <v-toolbar-title>Login form</v-toolbar-title>
-                     </v-toolbar>
+                  <v-col cols="">
+                     <v-img
+                        :src="require('../assets/circle.png')"
+                        class="pa-md-10 mx-lg-auto"
+                        contain
+                        width="260"
+                        />
+                  </v-col>
+                    <h1>LOGIN</h1>
                      <v-card-text>
                         <v-form>
+                            <v-col
+                                cols="12"
+                                sm="15"
+                                md="40"
+                            >
+
                            <v-text-field
-                              v-model="username"
-                              label="Login"
+                              name="Username"
+                              label="Username"
+                              maxlength="15"
+                              counter="15"
+                              filled
+                              rounded
                               type="text"
                            ></v-text-field>
+                           </v-col>
+                            <v-col
+                                cols="12"
+                                sm="15"
+                                md="40"
+                            >
                            <v-text-field
-                              v-model="password"
+                              id="password"
+                              name="password"
                               label="Password"
+                              filled
+                              rounded
                               type="password"
                            ></v-text-field>
+                           </v-col>
                         </v-form>
                      </v-card-text>
+                    <v-row
+                        align="center"
+                        justify="space-around"
+                    >
+                    <v-btn
+                    text
+                    color="red"
+                    >Register here</v-btn>
+                    <v-btn
+                    text
+                    color="red"
+                    >Forgot your password?</v-btn>
+                    </v-row>
                      <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="primary" @click="login()">Login</v-btn>
+                            <v-col
+                                cols="12"
+                                sm="15"
+                                md="40"
+                            >
+                        <v-btn color="green"
+                            class="ma-2 white--text"
+                            rounded
+                            x-large
+                            to="/">Let's go!
+                            </v-btn>
+                            </v-col>
                      </v-card-actions>
                   </v-card>
                </v-flex>
             </v-layout>
          </v-container>
-      </v-main>
+      </v-content>
    </v-app>
 </template>
 
