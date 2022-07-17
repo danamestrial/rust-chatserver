@@ -3,6 +3,7 @@
 use rocket::serde::json::Json;
 use rocket::serde::Deserialize;
 use rocket::response::Redirect;
+use rust_chatserver::*;
 
 #[get("/")]
 fn index() -> &'static str {
@@ -12,9 +13,12 @@ fn index() -> &'static str {
 #[post("/login", format = "json", data = "<logininfo>")]
 fn login(logininfo: Json<UserInfo>) -> Json<bool>{
     println!("{:?}",logininfo);
+    let connection = establish_connection();
+    
+    //Authenticate
+    let access = authenticate(&connection, &logininfo.username, &logininfo.password);
 
-    //get password from database using username
-    Json(true)
+    Json(access)
 }
 
 // Json Format
@@ -25,8 +29,6 @@ fn login(logininfo: Json<UserInfo>) -> Json<bool>{
 
 #[post("/register", format = "json", data = "<regisinfo>")]
 fn register(regisinfo: Json<UserInfo>) -> Json<String> {
-    use rust_chatserver::*;
-
     let connection = establish_connection();
     let user = add_user(&connection, &regisinfo.username, &regisinfo.password);
 

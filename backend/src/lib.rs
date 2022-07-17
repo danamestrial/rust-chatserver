@@ -13,6 +13,7 @@ use std::env;
 use schema::posts::dsl::*;
 use std::io;
 use models::{Post, NewUser};
+use bcrypt::{DEFAULT_COST, hash, verify};
 
 pub fn establish_connection() -> PgConnection {
     dotenv().ok();
@@ -23,15 +24,22 @@ pub fn establish_connection() -> PgConnection {
         .expect(&format!("Error connecting to {}", database_url))
 }
 
-pub fn authenticate(other_username: String, other_password: String)
--> Result<String, io::Error> {
-    panic!();
+pub fn authenticate<'a>(conn: &PgConnection, other_username: &'a String, other_password: &'a String)
+-> bool {
+    let user_password: String = posts
+                        .filter(username.eq(other_username))
+                        .select(password)
+                        .first(conn)
+                        .expect("Error saving new post");
+
+    let valid = verify(other_password, &user_password);
+
+    valid.unwrap()
 }
 
 pub fn add_user<'a>(conn: &PgConnection, other_username: &'a str, other_password: &'a str)
 -> Post {
     use schema::posts;
-    use bcrypt::{DEFAULT_COST, hash, verify};
 
     let new_user = NewUser {
         username: other_username,
