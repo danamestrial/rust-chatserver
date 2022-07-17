@@ -24,7 +24,7 @@
                      </v-card-text>
                      <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="primary" @click="login()">Login</v-btn>
+                        <v-btn color="primary" @click="register()">Login</v-btn>
                      </v-card-actions>
                   </v-card>
                </v-flex>
@@ -50,6 +50,21 @@ export default {
 
         const response = await axios
         .post("/api/login", {
+            username: this.username,
+            password: this.password
+        })
+        .catch((error) => {
+            if (error.response) {
+                console.warn("something went wrong");
+            }
+        });
+        console.log(response.data);
+    },
+
+    async register() {
+
+        const response = await axios
+        .post("/api/register", {
             username: this.username,
             password: this.password
         })
