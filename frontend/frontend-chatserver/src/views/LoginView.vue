@@ -5,6 +5,14 @@
             <v-layout align-center justify-center>
                <v-flex xs12 sm8 md4 >
                   <v-card class="elevation-12">
+                  <v-col cols="">
+                     <v-img
+                        :src="require('../assets/circle.png')"
+                        class="pa-md-10 mx-lg-auto"
+                        contain
+                        width="260"
+                        />
+                  </v-col>
                     <h1>LOGIN</h1>
                      <v-card-text>
                         <v-form>
