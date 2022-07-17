@@ -1,5 +1,5 @@
 CREATE TABLE posts (
   id SERIAL PRIMARY KEY,
-  username VARCHAR NOT NULL,
+  username VARCHAR UNIQUE NOT NULL,
   password TEXT NOT NULL
 )
