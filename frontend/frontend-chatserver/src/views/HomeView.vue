@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-   <v-app id="inspire">
 
     <v-navigation-drawer
       v-model="drawer"
@@ -80,74 +79,33 @@
     app
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>{{}}</v-toolbar-title>
+    
     </v-app-bar>
 
-    <v-main>
-      <v-container
-        class="py-8 px-6"
-        fluid
-      >
-        <v-row>
-          <v-col
-            v-for="card in cards"
-            :key="card"
-            cols="12"
-          >
-            <v-card>
-              <v-subheader>{{ card }}</v-subheader>
+    <v-content>
+      <EmptyRoom />
+    </v-content>
 
-              <v-list two-line>
-                <template v-for="n in 6">
-                  <v-list-item
-
-                    :key="n"
-                  >
-                    <v-list-item-avatar color="grey darken-1">
-                    </v-list-item-avatar>
-
-                    <v-list-item-content>
-                      <v-list-item-title>Message {{ n }}</v-list-item-title>
-
-                      <v-list-item-subtitle>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil repellendus distinctio similique
-                      </v-list-item-subtitle>
-                    </v-list-item-content>
-                  </v-list-item>
-
-                  <v-divider
-                    v-if="n !== 6"
-                    :key="`divider-${n}`"
-                    inset
-                  ></v-divider>
-                </template>
-              </v-list>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-main>
-  </v-app>
   </div>
 </template>
 
 <script>
 
-
+import EmptyRoom from'../components/ChatRoom/EmptyRoom.vue'
 export default {
-  name: 'HomeView',
-  data: () => ({
-      username: 'airbussssss',
-      usericon: 'mdi-airplane',
-      cards: ['Today', 'Yesterday'],
-      drawer: null,
-      friends: [
-        ['mdi-star', 'gloria'],
-        ['mdi-nut', 'nut'],
-      ],
-      commu: [
-        ['mdi-brain','Dont think, Just DO']
-      ]
+    name: "HomeView",
+    data: () => ({
+        username: "airbussssss",
+        usericon: "mdi-airplane",
+        drawer: null,
+        friends: [
+            ["mdi-star", "gloria"],
+            ["mdi-nut", "nut"],
+        ],
+        commu: [
+            ["mdi-brain", "Dont think, Just DO"]
+        ]
     }),
+    components: { EmptyRoom }
 }
 </script>
