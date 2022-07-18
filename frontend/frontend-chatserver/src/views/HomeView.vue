@@ -6,8 +6,8 @@
       v-model="drawer"
       class = "brown darken-3"
       dark
-      permanent
       app
+      
     >
 
       <h1 class = "white--text text-h2 font-weight-black">Hello
@@ -27,8 +27,17 @@
 
       <v-divider></v-divider>
 
-      <h2 class = "text-left white--text text-h4 font-weight-medium">Friends</h2>
-      <v-list>
+      <v-list-group
+          :value="true"
+          no-action
+        >
+          <template v-slot:activator>
+            <v-list-item-content>
+              <v-list-item-title class = "text-left white--text text-h5 font-weight-medium">Friends</v-list-item-title>
+            </v-list-item-content>
+          </template>
+
+        <v-list subheader>
         <v-list-item
           v-for="[icon, name] in friends"
           :key="icon"
@@ -42,7 +51,8 @@
             <v-list-item-title class = "text-left">{{ name }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-      </v-list>
+        </v-list>
+      </v-list-group>
 
       <v-divider></v-divider>
 
@@ -64,6 +74,14 @@
       </v-list>
 
     </v-navigation-drawer>
+    
+    <v-app-bar
+    color = "light-blue lighten-3"
+    app
+    >
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-toolbar-title>{{}}</v-toolbar-title>
+    </v-app-bar>
 
     <v-main>
       <v-container
