@@ -83,7 +83,7 @@
     </v-app-bar>
 
     <v-content>
-      <EmptyRoom />
+      <MainChatRoom />
     </v-content>
 
   </div>
@@ -91,7 +91,7 @@
 
 <script>
 
-import EmptyRoom from'../components/ChatRoom/EmptyRoom.vue'
+import MainChatRoom from'../components/ChatRoom/MainChatRoom.vue'
 export default {
     name: "HomeView",
     data: () => ({
@@ -106,6 +106,6 @@ export default {
             ["mdi-brain", "Dont think, Just DO"]
         ]
     }),
-    components: { EmptyRoom }
+    components: { MainChatRoom }
 }
 </script>
