@@ -1,20 +1,22 @@
 <template>
 <div class="chatView">
     <NavBar/>
-    <v-content>
-        <MainChatRoom />
-    </v-content>
+    <div id="chat-container">
+        <v-main>
+            <ChatContainer />
+        </v-main>
+    </div>
 </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue'
-import MainChatRoom from'../components/ChatRoom/ChatContainer.vue'
+import ChatContainer from'../components/ChatRoom/ChatContainer.vue'
 export default {
     name: "ChatView",
     data: () => ({
     }),
 
-    components: { MainChatRoom,NavBar }
+    components: { ChatContainer,NavBar }
 }
 </script>

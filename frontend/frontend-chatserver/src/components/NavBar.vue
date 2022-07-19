@@ -14,7 +14,7 @@
         mdi-hand-wave
       </v-icon>
       </h1>
-      <h2 class = "white--text text-left overflow-auto">{{ username }}</h2>
+      <h2 class = "white--text text-left overflow-auto pl-3">{{ username }}</h2>
       
       <v-avatar
         class="mb-4"
@@ -36,7 +36,7 @@
             </v-list-item-content>
           </template>
 
-        <v-list subheader>
+        <v-list subheader flat>
         <v-list-item
           v-for="[icon, name] in friends"
           :key="icon"
@@ -56,12 +56,13 @@
 
       <v-divider></v-divider>
 
-      <h1 class = "text-left white--text text-h4 font-weight-medium">Community</h1>
-      <v-list>
+      <h1 class = "text-left white--text text-h4 font-weight-medium pl-3">Community</h1>
+      <v-list flat>
         <v-list-item
           v-for="[icon, name] in commu"
           :key="icon"
           link
+          router to="/chat"
         >
           <v-list-item-icon>
             <v-icon>{{ icon }}</v-icon>
