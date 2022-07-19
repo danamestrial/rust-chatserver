@@ -1,15 +1,17 @@
 <template>
     <div id="chat-container" class="chat-container">
-        <!-- <div id="chat-list-container" class="chat-list-container">
-            <ChatList />
-        </div> -->
+        <div id="chat-list-container" class="chat-list-container">
+            <!-- <ChatList /> -->
+        </div>
+        <main class="v-main"></main>
         <div class="chat-input-container">
             <TextInput />
         </div>
     </div>
 </template>
 <script>
-import TextInput from '../MSG/TextInput';
+import TextInput from '../MSG/TextInput'
+// import ChatList from '../MSG/ChatList'
 
 export default {
     name: "ChatContainer",

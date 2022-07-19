@@ -3,7 +3,7 @@
 
     <v-navigation-drawer
       v-model="drawer"
-      class = "brown darken-3"
+      class = "brown darken-3 overfloe-y-auto"
       dark
       app
       
@@ -41,6 +41,7 @@
           v-for="[icon, name] in friends"
           :key="icon"
           link
+          router to="/chat"
         >
           <v-list-item-icon>
             <v-icon>{{ icon }}</v-icon>
@@ -72,26 +73,39 @@
         </v-list-item>
       </v-list>
 
+      
+
+      <v-btn 
+      flat 
+      absolute
+      right
+      bottom 
+      color = "red"
+      router to="/login">
+        <span>Sign Out</span>
+        <v-icon right>mdi-logout</v-icon>
+      </v-btn>
+
     </v-navigation-drawer>
     
     <v-app-bar
     color = "light-blue lighten-3"
+    flat
     app
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     
     </v-app-bar>
 
-    <v-content>
-      <MainChatRoom />
-    </v-content>
+    <v-main>
+      <EmptyRoom/>
+    </v-main>
 
   </div>
 </template>
 
 <script>
-
-import MainChatRoom from'../components/ChatRoom/MainChatRoom.vue'
+import EmptyRoom from '@/components/ChatRoom/EmptyRoom.vue'
 export default {
     name: "HomeView",
     data: () => ({
@@ -106,6 +120,6 @@ export default {
             ["mdi-brain", "Dont think, Just DO"]
         ]
     }),
-    components: { MainChatRoom }
+    components: { EmptyRoom }
 }
 </script>
