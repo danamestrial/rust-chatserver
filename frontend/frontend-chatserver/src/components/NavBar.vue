@@ -101,7 +101,6 @@
 </template>
 
 <script>
-import EmptyRoom from '@/components/ChatRoom/EmptyRoom.vue'
 export default {
     name: "HomeView",
     data: () => ({
