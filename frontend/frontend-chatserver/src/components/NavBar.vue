@@ -6,7 +6,6 @@
       class = "brown darken-3 overfloe-y-auto"
       dark
       app
-      
     >
 
       <h1 class = "white--text text-h2 font-weight-black">Hello
@@ -56,7 +55,7 @@
 
       <v-divider></v-divider>
 
-      <h1 class = "text-left white--text text-h4 font-weight-medium pl-3">Community</h1>
+      <h3 class = "text-left white--text text-h4 font-weight-medium pl-3 pt-2">Community</h3>
       <v-list flat>
         <v-list-item
           v-for="[icon, name] in commu"
@@ -73,8 +72,6 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-
-      
 
       <v-btn 
       flat 

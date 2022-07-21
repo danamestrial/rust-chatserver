@@ -1,12 +1,14 @@
 <template>
+<v-app>
 <div class="chatView">
     <NavBar/>
     <div id="chat-container">
-        <v-main>
+        <v-main class="pt-0">
             <ChatContainer />
         </v-main>
     </div>
 </div>
+</v-app>
 </template>
 
 <script>

@@ -37,7 +37,7 @@
       </v-btn>
     </v-app-bar>
 
-    <v-main>
+    <v-main class = "pa-0">
       <router-view/>
     </v-main>
   </v-app>
@@ -53,7 +53,7 @@
 }
 
 nav {
-
+  padding: 30px;
 
   a {
     font-weight: bold;
