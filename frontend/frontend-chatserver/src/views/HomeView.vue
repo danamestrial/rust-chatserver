@@ -1,6 +1,14 @@
 <template>
   <div class="home">
       <NavBar/>
+      <v-app-bar
+    id="appbar"
+    color = "light-blue lighten-3"
+    flat
+    app
+    >
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    </v-app-bar>
     <v-main>
       <EmptyRoom/>
     </v-main>

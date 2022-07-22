@@ -3,7 +3,7 @@
 
     <v-navigation-drawer
       v-model="drawer"
-      class = "brown darken-3 overfloe-y-auto"
+      class = "brown darken-3 overflow-y-auto"
       dark
       app
     >
@@ -84,8 +84,28 @@
     app
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-    </v-app-bar>
+    <v-spacer></v-spacer>
 
+    <v-btn
+      elevation="2"
+      fab
+      icon
+      class = "mr-1 mt-7 cyan ligthen-2"
+      :open-on-hover="hover"
+    ><v-icon>mdi-cog</v-icon>
+    
+    <v-dialog
+    v-model="add">
+      <v-card>
+        <v-card-title>Invite friend</v-card-title>
+        <v-spacer></v-spacer>
+        <v-btn @click="popup = false">mdi-close</v-btn>
+        <v-img
+        lazy-src=""></v-img>
+      </v-card>
+    </v-dialog>
+    </v-btn>
+    </v-app-bar>
   </div>
 </template>
 
@@ -95,6 +115,7 @@ export default {
     data: () => ({
         username: "airbus",
         drawer: null,
+        popup: false,
         friends: [
             ["gloria"],
             ["nut"]

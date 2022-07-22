@@ -17,6 +17,7 @@ import ChatContainer from'@/components/ChatRoom/ChatContainer.vue'
 export default {
     name: "ChatView",
     data: () => ({
+        commuName:"Don't think, JUST DO"
     }),
     components: { ChatContainer, NavBar }
 }
