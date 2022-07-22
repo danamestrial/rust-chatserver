@@ -1,49 +1,31 @@
 <template>
-<v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      <v-btn @click="sub()"> sub
+      </v-btn>
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
+      <v-btn @click="test()"> send
+      </v-btn>
+
+      <v-btn @click="pingServer()"> test
+      </v-btn>
 
       <v-spacer></v-spacer>
 
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
+      <v-btn href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank" text>
         <span class="mr-2">Latest Release</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
 
     <v-main>
-      <router-view/>
+      <router-view />
     </v-main>
   </v-app>
 </template>
 
 <script>
+import axios from "axios";
 
 export default {
   name: "App",
@@ -51,7 +33,48 @@ export default {
     api_check: "not ping",
   }),
 
-  
+  methods: {
+    sub() {
+      var retryTime = 1;
+      const events = new EventSource('/api/events');
+
+      events.addEventListener("message", (ev) => {
+        console.log("raw data", JSON.stringify(ev.data));
+        console.log("decoded data", JSON.stringify(JSON.parse(ev.data)));
+        // const msg = JSON.parse(ev.data);
+      });
+
+      events.addEventListener("open", () => {
+        // setConnectedStatus(true);
+        console.log(`connected to event stream at /api/events`);
+        // retryTime = 1;
+      });
+
+      events.addEventListener("error", () => {
+        events.close();
+
+        let timeout = retryTime;
+        retryTime = Math.min(64, retryTime * 2);
+        console.log(`connection lost. attempting to reconnect in ${timeout}s`);
+        // setTimeout(() => connect('/api/events'), (() => timeout * 1000)());
+      });
+    },
+
+    async test() {
+      const response = await axios
+        .post("/api/message", {
+          room: "1",
+          userid: 1,
+          message: "hello world"
+        }).catch((error) => {
+          if (error.response) {
+            console.warn("something went wrong");
+          }
+        })
+      console.log(response.data)
+    }
+  },
+
 }
 </script>
 
