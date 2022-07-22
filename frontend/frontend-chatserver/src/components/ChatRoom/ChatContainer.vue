@@ -5,7 +5,7 @@
             <v-container>
                 <v-row class ="mt-15 chat-list-container" >
                     <v-list-item v-for="msg in chat" :key="msg">
-                    <v-list-item-content class="ml-1 py-0 ">
+                    <v-list-item-content class="ml-1 py-2 ">
                         <v-list-item-title class="text-left">{{msg.senderName}} - {{msg.role}}</v-list-item-title>
                         <v-card
                             class="d-flex pa-2 yellow darken-1" 
@@ -55,6 +55,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 export default {
     data: () => ({
         chat:[
@@ -72,7 +73,8 @@ export default {
         {
         senderName: this.username,
         role:this.role,
-        text: this.text
+        text: this.text,
+        timestamp:moment().format("h:mm a, Do MMM YYYY")
         })
         this.text = null
         }
