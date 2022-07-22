@@ -7,47 +7,33 @@
       dark
       app
     >
-
-      <h1 class = "white--text text-h2 font-weight-black">Hello
+      <h1 class = "white--text text-h2 font-weight-black" to="/">Hello
       <v-icon size ="40" color="amber">
         mdi-hand-wave
       </v-icon>
       </h1>
-      <h2 class = "white--text text-left overflow-auto pl-3">{{ username }}</h2>
+      <h2 class = "white--text text-left overflow-auto pl-3 pb-2">{{ username }}</h2>
       
-      <v-avatar
-        class="mb-4"
-        size="90"
-        color = "light-blue darken-3"
-      >
-      <v-icon size="45">{{ usericon }}</v-icon>
-      </v-avatar>
-
       <v-divider></v-divider>
 
       <v-list-group
           :value="true"
           no-action
+          class = "pt-2"
         >
           <template v-slot:activator>
             <v-list-item-content>
-              <v-list-item-title class = "text-left white--text text-h5 font-weight-medium">Friends</v-list-item-title>
+              <v-list-item-title class = "text-left white--text text-h4 font-weight-medium">Friends</v-list-item-title>
             </v-list-item-content>
           </template>
 
         <v-list subheader flat>
         <v-list-item
-          v-for="[icon, name] in friends"
-          :key="icon"
-          link
-          router to="/chat"
+          v-for="[name] in friends"
+          :key="name"
         >
-          <v-list-item-icon>
-            <v-icon>{{ icon }}</v-icon>
-          </v-list-item-icon>
-
           <v-list-item-content>
-            <v-list-item-title class = "text-left">{{ name }}</v-list-item-title>
+            <v-list-item-title class = "text-left text-h6">{{ name }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         </v-list>
@@ -55,7 +41,9 @@
 
       <v-divider></v-divider>
 
-      <h3 class = "text-left white--text text-h4 font-weight-medium pl-3 pt-2">Community</h3>
+      <div>
+      <h3 class = "text-left white--text text-h4 font-weight-medium pl-3 pt-2">
+        Community</h3>
       <v-list flat>
         <v-list-item
           v-for="[icon, name] in commu"
@@ -72,6 +60,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      </div>
 
       <v-btn 
       flat 
@@ -92,7 +81,6 @@
     app
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-    
     </v-app-bar>
 
   </div>
@@ -106,8 +94,8 @@ export default {
         usericon: "mdi-airplane",
         drawer: null,
         friends: [
-            ["mdi-star", "gloria"],
-            ["mdi-nut", "nut"],
+            ["gloria"],
+            ["nut"]
         ],
         commu: [
             ["mdi-brain", "Dont think, Just DO"]

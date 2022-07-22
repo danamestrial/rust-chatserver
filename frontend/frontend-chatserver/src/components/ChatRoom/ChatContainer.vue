@@ -1,6 +1,10 @@
 <template>
     <v-app class="yellow lighten-4">
     <div id="chat-container" class="chat-container">
+        <div id="chat" class="overflow-y-auto">
+            <ChatMsg/>
+        </div>
+        
         <div class="chat-input-container">
             <TextInput />
         </div>
@@ -9,13 +13,13 @@
 </template>
 <script>
 import TextInput from '../MSG/TextInput'
-// import ChatList from '../MSG/ChatList'
-
+import ChatMsg from '../MSG/ChatMsg.vue'
 export default {
     name: "ChatContainer",
     components: {
-        TextInput
-    }
+    TextInput,
+    ChatMsg
+}
 }
 </script>
 <style scoped>
