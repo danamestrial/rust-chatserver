@@ -1,5 +1,5 @@
 <template>
-    <v-container class="chat-input">
+    <v-container class="d-flex align-center chat-input">
         <v-textarea
           v-model.trim="message"
           v-on:keyup.enter.exact="submitHandler"
@@ -10,6 +10,8 @@
           name="message"
           label="Message"
         ></v-textarea>
+        <v-btn icon class="ml-3" @click="send">
+        <v-icon>mdi-send</v-icon></v-btn>
     </v-container>
 </template>
 <script>

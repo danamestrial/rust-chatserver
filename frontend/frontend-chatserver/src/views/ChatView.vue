@@ -6,11 +6,8 @@
             <v-main class="pt-0">
                 <ChatContainer />
             </v-main>
-            
         </div>
-        
     </div>
-
 </v-app>
 </template>
 
@@ -20,7 +17,6 @@ import ChatContainer from'@/components/ChatRoom/ChatContainer.vue'
 export default {
     name: "ChatView",
     data: () => ({
-        Recipent: "gloria"
     }),
     components: { ChatContainer, NavBar }
 }

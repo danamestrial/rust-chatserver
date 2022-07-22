@@ -10,7 +10,8 @@
                 flat
                 v-if="msg.senderName!=username"
                 >
-                {{msg.text}}
+                <div>
+                {{msg.text}}</div>
             </v-card>
 
             <v-card
@@ -35,7 +36,7 @@
 export default {
     data: () => ({
         chat:[
-            {senderName:"gloria", role:"Support", text:"Helloo",timestamp:"12:23, 3 Jul 2022"},
+            {senderName:"gloria", role:"Support", text:"kik",timestamp:"12:23, 3 Jul 2022"},
             {senderName:"airbus", role:"Carry", text:"MK mai", timestamp:"12:30, 3 Jul 2022"},
             {senderName:"nut", role:"Support", text:"okk",timestamp:"12:35, 3 Jul 2022"}
         ],

@@ -8,9 +8,11 @@
       app
     >
       <h1 class = "white--text text-h2 font-weight-black" to="/">Hello
+      <v-btn flat icon link to="/">
       <v-icon size ="40" color="amber">
         mdi-hand-wave
       </v-icon>
+      </v-btn>
       </h1>
       <h2 class = "white--text text-left overflow-auto pl-3 pb-2">{{ username }}</h2>
       
@@ -27,7 +29,7 @@
             </v-list-item-content>
           </template>
 
-        <v-list subheader flat>
+        <v-list subheader>
         <v-list-item
           v-for="[name] in friends"
           :key="name"
@@ -76,6 +78,7 @@
     </v-navigation-drawer>
     
     <v-app-bar
+    id="appbar"
     color = "light-blue lighten-3"
     flat
     app
@@ -90,8 +93,7 @@
 export default {
     name: "HomeView",
     data: () => ({
-        username: "airbussssss",
-        usericon: "mdi-airplane",
+        username: "airbus",
         drawer: null,
         friends: [
             ["gloria"],
