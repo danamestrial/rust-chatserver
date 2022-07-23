@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+<div class="home">
       <NavBar/>
       <v-app-bar
     id="appbar"

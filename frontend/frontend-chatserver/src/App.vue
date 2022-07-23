@@ -5,6 +5,11 @@
       color="primary"
       dark
     >
+     <v-btn @click="sub()"> sub </v-btn>
+
+      <v-btn @click="test()"> send </v-btn>
+
+      <v-btn @click="pingServer()"> test </v-btn>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -36,12 +41,53 @@
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
-
+    
     <v-main class = "pa-0">
       <router-view/>
     </v-main>
   </v-app>
 </template>
+
+<script>
+import axios from "axios";
+
+export default {
+  name: "App",
+  mounted() {
+    this.$sse
+      .create({
+        url: "http://localhost:8000/api/events",
+        format: "json",
+        //withCredentials: true,
+        // polyfill: true,
+      })
+      .on("message", (msg) => console.info("Message:", msg))
+      .on("error", (err) =>
+        console.error("Failed to parse or lost connection:", err)
+      )
+      .connect()
+      .then(() => {console.log("Connected to events handle")})
+      .catch((err) => console.error("Failed make initial connection:", err));
+  },
+
+  methods: {
+    test() {
+    axios.post("api/message", {
+      room: "1",
+      userid: 69,
+      message: "hello world",
+    });
+    },
+    // test() {
+    //   let formdata = new FormData();
+    //   formdata.append("room", "1");
+    //   formdata.append("username", "airbus");
+    //   formdata.append("message", "hellowordl");
+    //   axios.post("/api/message", formdata);
+    // },
+  },
+};
+</script>
 
 <style lang="scss">
 #app {
