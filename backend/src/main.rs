@@ -3,6 +3,9 @@
 use rust_chatserver::*;
 pub mod models;
 use models::*;
+extern crate base64;
+
+use base64::{encode, decode};
 
 use rocket::serde::json::Json;
 use rocket::{State, Shutdown};
@@ -10,6 +13,7 @@ use rocket::response::stream::{EventStream, Event};
 use rocket::tokio::sync::broadcast::{channel, Sender, error::RecvError};
 use rocket::tokio::select;
 use rocket::form::Form;
+use rocket::http::{Cookie, CookieJar};
 
 #[get("/")]
 fn index() -> &'static str {
@@ -17,12 +21,16 @@ fn index() -> &'static str {
 }
 
 #[post("/login", format = "json", data = "<logininfo>")]
-fn login(logininfo: Json<UserInfo>) -> Json<bool>{
+fn login(cookies: &CookieJar, logininfo: Json<UserInfo>) -> Json<bool>{
     println!("{:?}",logininfo);
     let connection = establish_connection();
     
+    let now = (&logininfo.username).clone();
     //Authenticate
     let access = authenticate(&connection, &logininfo.username, &logininfo.password);
+    if access {
+        cookies.add(Cookie::new("current_user", now));
+    };
 
     Json(access)
 }
@@ -64,6 +72,26 @@ fn post(msginfo: Json<Message>, queue: &State<Sender<Message>>) {
     // Json("Binged".to_string())
 }
 
+#[get("/whoami")]
+fn whoami(cookies: &CookieJar) -> Json<Who>{
+    match cookies.get("current_user") {
+        Some(x) => {
+            println!("{:?}",x.value());
+            let who = Who{
+                username: x.value().to_string(),
+                status: true,
+            };
+            return Json(who);
+        }
+        None => {
+            let who = Who{
+                username: "".to_string(),
+                status: false,
+            };
+            return Json(who);
+        }
+    }
+}
 
 /* Credit to Stackoverflow for cors headers responses
 https://stackoverflow.com/questions/62412361/how-to-set-up-cors-or-options-for-rocket-rs
@@ -103,5 +131,6 @@ fn rocket() ->  _ {
         register,
         post,
         events,
+        whoami,
         ])
 }

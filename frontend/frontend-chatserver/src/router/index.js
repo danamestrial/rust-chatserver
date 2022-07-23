@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import axios from "axios"
+import axios from "axios"
+import store from '@/store'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
@@ -45,17 +46,24 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEach(async (to, from, next) => {
-//   const response = await axios.get("/api/").catch((error) => {
-//     if (error.response) {
-//       console.warn("something went wrong");
-//     }
-//   });
+router.beforeEach(async (to, from, next) => {
+  const response = await axios.get("/api/whoami").catch((error) => {
+    if (error.response) {
+      console.warn("something went wrong");
+    }
+  });
 
-//   console.log(response);
-//   console.log(to);
-//   console.log(from);
-//   console.log(next);
-// });
+  // Check prints
+  console.log(response.data);
+  await store.dispatch("storedinfo", response.data);
+  console.log(store.state.username);
+
+  const isLoggedIn = store.state.status;
+  if (to.name === "login" && isLoggedIn) {
+    next("/");
+  } else {
+    next();
+  }
+});
 
 export default router;

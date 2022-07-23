@@ -46,7 +46,7 @@
                 name="message"
                 label="Message"
                 ></v-textarea>
-                <v-btn icon class="ml-3" @click="send">
+                <v-btn icon class="ml-3" @click="sender">
                 <v-icon>mdi-send</v-icon></v-btn>
             </v-container>
         </div>
@@ -56,6 +56,9 @@
 
 <script>
 import moment from 'moment';
+import axios from 'axios';
+import {getRoom} from '../../views/ChatView.vue'
+
 export default {
     data: () => ({
         chat:[
@@ -68,6 +71,13 @@ export default {
         text: null
     }),
     methods: {
+        sender() {
+            axios.post("api/message", {
+                room: getRoom(),
+                userid: "1",
+                message: this.text,
+            })
+        },
         send: function(){
             this.chat.push(
         {
@@ -78,7 +88,23 @@ export default {
         })
         this.text = null
         }
-    }
+    },
+    mounted() {
+    this.$sse
+      .create({
+        url: "http://localhost:8000/api/events",
+        format: "json",
+        //withCredentials: true,
+        // polyfill: true,
+      })
+      .on("message", (msg) => console.info("Message:", msg))
+      .on("error", (err) =>
+        console.error("Failed to parse or lost connection:", err)
+      )
+      .connect()
+      .then(() => {console.log("Connected to events handle")})
+      .catch((err) => console.error("Failed make initial connection:", err));
+  },
 }
 </script>
 

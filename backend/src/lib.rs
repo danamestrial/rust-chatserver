@@ -51,3 +51,11 @@ pub fn add_user<'a>(conn: &PgConnection, other_username: &'a str, other_password
         .get_result(conn)
         .expect("Error saving new post")
 }
+
+// pub fn findUserByUsername<'a>(conn: &PgConnection, other_username: &'a str)
+// -> bool {
+//     use diesel::pg::expression::dsl::*;
+//     let result = posts.select(username).filter(username.eq(any(other_username))).load::<QueryId>(conn);
+//     println!("{:?} - result", result);
+//     result.unwrap() != Vec::new()
+// }

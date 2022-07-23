@@ -19,6 +19,15 @@ export default {
     data: () => ({
         commuName:"Don't think, JUST DO"
     }),
-    components: { ChatContainer, NavBar }
+    methods: {
+        getRoom() {
+            return this.commuName;
+        }
+    },
+    components: { ChatContainer, NavBar },
+};
+
+export function getRoom() {
+    return this.commuName
 }
 </script>

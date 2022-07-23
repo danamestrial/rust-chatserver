@@ -26,6 +26,12 @@ pub struct UserInfo {
 #[derive(Debug, Clone, FromForm ,Serialize, Deserialize)]
 pub struct Message {
     pub room: String,
-    pub userid: i32,
+    pub username: String,
     pub message: String,
+}
+
+#[derive(Debug, Clone, FromForm ,Serialize, Deserialize)]
+pub struct Who {
+    pub username: String,
+    pub status: bool,
 }
