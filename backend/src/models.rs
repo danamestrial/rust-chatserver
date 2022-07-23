@@ -1,6 +1,7 @@
 use super::schema::posts;
 use diesel::{Queryable, Insertable};
 use serde::*;
+use rocket::FromForm;
 
 #[derive(Queryable)]
 pub struct Post {
@@ -22,9 +23,9 @@ pub struct UserInfo {
     pub password: String,
 }
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Debug, Clone, FromForm ,Serialize, Deserialize)]
 pub struct Message {
     pub room: String,
-    pub userid: i64,
+    pub userid: i32,
     pub message: String,
 }
