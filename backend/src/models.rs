@@ -8,6 +8,7 @@ pub struct Post {
     pub id: i32,
     pub username: String,
     pub password: String,
+    pub rooms: String,
 }
 
 #[derive(Insertable)]
@@ -15,6 +16,7 @@ pub struct Post {
 pub struct NewUser<'a> {
     pub username: &'a str,
     pub password: &'a str,
+    pub rooms: String,
 }
 
 #[derive(Deserialize, Debug)]
@@ -34,4 +36,5 @@ pub struct Message {
 pub struct Who {
     pub username: String,
     pub status: bool,
+    pub rooms: String,
 }

@@ -25,28 +25,28 @@ export default {
       ["mdi-star", "gloria"],
       ["mdi-nut", "nut"],
     ],
-    commu: [["mdi-brain", "Dont think, Just DO"]],
+    commu: store.state.rooms,
   }),
   mounted() {
     if(!store.state.status) {
       window.location = "/login";
     }
-    this.$sse
-      .create({
-        url: "http://localhost:8000/api/events",
-        format: "json",
-        //withCredentials: true,
-        // polyfill: true,
-      })
-      .on("message", (msg) => console.info("Message:", msg))
-      .on("error", (err) =>
-        console.error("Failed to parse or lost connection:", err)
-      )
-      .connect()
-      .then(() => {
-        console.log("Connected to events handle");
-      })
-      .catch((err) => console.error("Failed make initial connection:", err));
+    // this.$sse
+    //   .create({
+    //     url: "http://localhost:8000/api/events",
+    //     format: "json",
+    //     //withCredentials: true,
+    //     // polyfill: true,
+    //   })
+    //   .on("message", (msg) => console.info("Message:", msg))
+    //   .on("error", (err) =>
+    //     console.error("Failed to parse or lost connection:", err)
+    //   )
+    //   .connect()
+    //   .then(() => {
+    //     console.log("Connected to events handle");
+    //   })
+    //   .catch((err) => console.error("Failed make initial connection:", err));
   },
   components: { EmptyRoom, NavBar },
 };

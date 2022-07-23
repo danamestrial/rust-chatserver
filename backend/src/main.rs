@@ -35,6 +35,11 @@ fn login(cookies: &CookieJar, logininfo: Json<UserInfo>) -> Json<bool>{
     Json(access)
 }
 
+#[get("/logout")]
+fn logout(cookies: &CookieJar) {
+    cookies.remove(Cookie::named("current_user"));
+}
+
 #[post("/register", format = "json", data = "<regisinfo>")]
 fn register(regisinfo: Json<UserInfo>) -> Json<String> {
     let connection = establish_connection();
@@ -77,16 +82,20 @@ fn whoami(cookies: &CookieJar) -> Json<Who>{
     match cookies.get("current_user") {
         Some(x) => {
             println!("{:?}",x.value());
+            let connection = establish_connection();
             let who = Who{
                 username: x.value().to_string(),
                 status: true,
+                rooms: getRoomsByUsername(&connection, x.value().to_string()),
             };
+            println!("{:?}", who);
             return Json(who);
         }
         None => {
             let who = Who{
                 username: "".to_string(),
                 status: false,
+                rooms: "[]".to_string(),
             };
             return Json(who);
         }
@@ -132,5 +141,6 @@ fn rocket() ->  _ {
         post,
         events,
         whoami,
+        logout,
         ])
 }

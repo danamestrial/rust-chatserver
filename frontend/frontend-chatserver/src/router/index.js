@@ -57,6 +57,7 @@ router.beforeEach(async (to, from, next) => {
   console.log(response.data);
   await store.dispatch("storedinfo", response.data);
   console.log(store.state.username);
+  console.log(store.state.rooms);
 
   const isLoggedIn = store.state.status;
   if (to.name === "login" && isLoggedIn) {

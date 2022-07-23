@@ -53,22 +53,22 @@ import axios from "axios";
 
 export default {
   name: "App",
-  mounted() {
-    this.$sse
-      .create({
-        url: "http://localhost:8000/api/events",
-        format: "json",
-        //withCredentials: true,
-        // polyfill: true,
-      })
-      .on("message", (msg) => console.info("Message:", msg))
-      .on("error", (err) =>
-        console.error("Failed to parse or lost connection:", err)
-      )
-      .connect()
-      .then(() => {console.log("Connected to events handle")})
-      .catch((err) => console.error("Failed make initial connection:", err));
-  },
+  // mounted() {
+  //   this.$sse
+  //     .create({
+  //       url: "http://localhost:8000/api/events",
+  //       format: "json",
+  //       //withCredentials: true,
+  //       // polyfill: true,
+  //     })
+  //     .on("message", (msg) => console.info("Message:", msg))
+  //     .on("error", (err) =>
+  //       console.error("Failed to parse or lost connection:", err)
+  //     )
+  //     .connect()
+  //     .then(() => {console.log("Connected to events handle")})
+  //     .catch((err) => console.error("Failed make initial connection:", err));
+  // },
 
   methods: {
     test() {

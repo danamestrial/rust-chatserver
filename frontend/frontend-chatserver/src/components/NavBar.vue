@@ -48,13 +48,14 @@
         Community</h3>
       <v-list flat>
         <v-list-item
-          v-for="[icon, name] in commu"
-          :key="icon"
+          v-for="name in commu"
+          :key="name"
           link
+          @click="getName(name)"
           router to="/chat"
         >
           <v-list-item-icon>
-            <v-icon>{{ icon }}</v-icon>
+            <v-icon>mdi-brain</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
@@ -70,7 +71,7 @@
       right
       bottom 
       color = "red"
-      router to="/login">
+      @click="logout()">
         <span>Sign Out</span>
         <v-icon right>mdi-logout</v-icon>
       </v-btn>
@@ -110,6 +111,8 @@
 </template>
 
 <script>
+import axios from "axios";
+import store from "@/store";
 export default {
     name: "HomeView",
     data: () => ({
@@ -120,9 +123,18 @@ export default {
             ["gloria"],
             ["nut"]
         ],
-        commu: [
-            ["mdi-brain", "Dont think, Just DO"]
-        ]
+        commu: store.state.rooms
     }),
+    methods: {
+      async logout() {
+        await axios.get("/api/logout");
+        this.$router.go("/");
+        await store.dispatch("resetinfo");
+      },
+      getName(Name) {
+        store.state.roomname = Name;
+        console.log(store.state.roomname);
+      }
+    }
 }
 </script>
