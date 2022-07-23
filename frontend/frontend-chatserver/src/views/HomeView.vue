@@ -1,117 +1,37 @@
 <template>
-  <v-container>
-    <v-row class="text-center">
-      <v-col cols="12">
-        <v-img
-          :src="require('../assets/logo.svg')"
-          class="my-3"
-          contain
-          height="200"
-        />
-      </v-col>
-
-      <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify
-        </h1>
-
-        <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br>please join our online
-          <a
-            href="https://community.vuetifyjs.com"
-            target="_blank"
-          >Discord Community</a>
-        </p>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          What's next?
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(next, i) in whatsNext"
-            :key="i"
-            :href="next.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ next.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Important Links
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(link, i) in importantLinks"
-            :key="i"
-            :href="link.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ link.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Ecosystem
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(eco, i) in ecosystem"
-            :key="i"
-            :href="eco.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ eco.text }}
-          </a>
-        </v-row>
-      </v-col>
-    </v-row>
-  </v-container>
+<div class="home">
+      <NavBar/>
+      <v-app-bar
+    id="appbar"
+    color = "light-blue lighten-3"
+    flat
+    app
+    >
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    </v-app-bar>
+    <v-main>
+      <EmptyRoom/>
+    </v-main>
+  </div>
 </template>
 
 <script>
-  import axios from 'axios';
-
-  export default {
-    name: 'HelloWorld',
-
+import EmptyRoom from '@/components/ChatRoom/EmptyRoom.vue'
+import NavBar from '../components/NavBar.vue'
+export default {
+    name: "HomeView",
     data: () => ({
-      
+        username: "airbussssss",
+        usericon: "mdi-airplane",
+        drawer: null,
+        friends: [
+            ["mdi-star", "gloria"],
+            ["mdi-nut", "nut"],
+        ],
+        commu: [
+            ["mdi-brain", "Dont think, Just DO"]
+        ]
     }),
-
-    methods: {
-    async check() {
-      const response = await axios
-      .get("/api/");
-
-      console.log(response.data);
-    }
-  },
-
-  beforeMount(){
-    this.check()
- },
-  }
+    components: { EmptyRoom, NavBar }
+}
 </script>
