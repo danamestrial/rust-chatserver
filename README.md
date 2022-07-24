@@ -34,6 +34,22 @@ To build a chat web server that has features like, ‘ Line OpenchatTM ‘,  but
 * Ability to connect and access a room and remove people
 * Persistent messages in a room (storing all the messages in a db and the ability to parse everything back when the room is restarted)
 
+## Project features/Scope that is done
+* Starting the framework of the chat room
+* Designing/Creating *beautiful* GUIs for it
+* Setting the role for each user (frontend)
+* Ability to write messages, (and other people in the room sees in)
+* Ability to ‘login’ ~~as an instructor/TA~~
+* Ability to connect and access a room and ~~remove people~~
+
+
+## Project features/Scope that is not complete
+* Setting the role for each user (backend)
+* Tagging people by calling their name
+* Inviting people to a group via code and/or link
+* Removing people from a group
+* Persistent messages in a room (storing all the messages in a db and the ability to parse everything back when the room is restarted)
+
 ## Prototype
 Our team created a interactive prototype of our chat server project on Figma:
 https://www.figma.com/proto/l9W7tZHApIOcqplj6tWWtP/Circle-Chat-Server?node-id=19%3A10&scaling=contain&page-id=0%3A1&starting-point-node-id=19%3A10
