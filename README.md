@@ -1,7 +1,24 @@
-# rust-chatserver
+# Rust-chatserver
 ICCS 311 Project <br/>
 ## Project name
 Circle OpenChat  — Code name: <b>Don’t think, just do </b>
+
+## Running the project
+### Backend
+Requirements to run backend: `Docker`, `postgresql` & `libqp-dev` for Diesel Cli <br/>
+#### Database
+Once inside the backend folder do (in the order given): <br/>
+`./make-db.sh {password}` script to create a Docker instance <br/>
+#### Diesel
+`cargo install diesel_cli --no-default-features --features postgres` to install Diesel Cli <br/>
+`diesel setup` <br/>
+`diesel migration run` <br/>
+Then `cargo run` to start the backend
+
+### Frontend
+Once inside the frontend folder do (in the order given): <br/>
+`yarn install` <br/>
+then `yarn serve` to start the frontend
   
 ## Project Plan
 To build a chat web server that has features like, ‘ Line OpenchatTM ‘,  but with other features like grouping, tagging, ability to have different roles and more. <br/>
