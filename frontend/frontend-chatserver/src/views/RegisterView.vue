@@ -20,32 +20,6 @@
                                 cols="12"
                                 sm="15"
                             >
-                                <v-text-field
-                                    v-model="firstname"
-                                    label="First name"
-                                    filled
-                                    rounded
-                                    type="text"
-                                    required
-                                ></v-text-field>
-                            </v-col>
-                            <v-col
-                                cols="12"
-                                sm="15"
-                            >
-                                <v-text-field
-                                    v-model="lastname"
-                                    label="Last Name"
-                                    filled
-                                    rounded
-                                    type="text"
-                                    required
-                                ></v-text-field>
-                            </v-col>
-                            <v-col
-                                cols="12"
-                                sm="15"
-                            >
                            <v-text-field
                               v-model="username"
                               label="Username"
@@ -64,10 +38,29 @@
                            <v-text-field
                               v-model="password"
                               label="Password"
+                              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                              :rules="[rules.required, rules.min]"
+                              :type="show1 ? 'text' : 'password'"
                               filled
                               rounded
-                              type="password"
                               required
+                              @click:append="show1 = !show1"
+                           ></v-text-field>
+                           </v-col>
+                            <v-col
+                                cols="12"
+                                sm="15"
+                            >
+                           <v-text-field
+                              v-model="confirmPassword" 
+                              label="Confirm Password"
+                              :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+                              :rules="[rules.required, passwordconfirmrule]"
+                              :type="show2 ? 'text' : 'password'"
+                              filled
+                              rounded
+                              required
+                              @click:append="show2 = !show2"
                            ></v-text-field>
                            </v-col>
                         </v-form>
@@ -111,6 +104,13 @@ export default {
    data: () => ({
     username: "",
     password: "",
+    confirmPassword: "",
+        show1: false,
+        show2: false,
+        rules: {
+          required: value => !!value || 'Required.',
+          min: v => v.length >= 8 || 'Min 8 characters',
+        }
    }),
 
    methods: {
@@ -127,7 +127,17 @@ export default {
             }
         });
         console.log(response.data);
-    }
+        this.$router.push("/login");
+    },
+    checksame(v) {
+         return v == this.pasword;
+      }
+   },
+
+   computed: {
+      passwordconfirmrule() {
+         return () => (this.password === this.confirmPassword) || 'Password Must match'
+      }
    }
 };
 </script>
