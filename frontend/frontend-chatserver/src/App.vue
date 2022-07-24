@@ -1,10 +1,15 @@
 <template>
 <v-app>
-    <v-app-bar
+    <!-- <v-app-bar
       app
       color="primary"
       dark
     >
+     <v-btn @click="sub()"> sub </v-btn>
+
+      <v-btn @click="test()"> send </v-btn>
+
+      <v-btn @click="pingServer()"> test </v-btn>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -35,24 +40,19 @@
         <span class="mr-2">Latest Release</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
-    </v-app-bar>
-
-    <v-main>
+    </v-app-bar> -->
+    
+    <v-main class = "pa-0">
       <router-view/>
     </v-main>
   </v-app>
 </template>
 
 <script>
-
 export default {
   name: "App",
-  data: () => ({
-    api_check: "not ping",
-  }),
-
   
-}
+};
 </script>
 
 <style lang="scss">

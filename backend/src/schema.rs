@@ -3,5 +3,6 @@ table! {
         id -> Int4,
         username -> Varchar,
         password -> Text,
+        rooms -> Text,
     }
 }

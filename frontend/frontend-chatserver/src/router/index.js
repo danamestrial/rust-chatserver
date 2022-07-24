@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import axios from "axios"
+import axios from "axios"
+import store from '@/store'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
+import ChatView from '../views/ChatView.vue'
 
 Vue.use(VueRouter)
 
@@ -11,25 +13,34 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    meta: {
+      title: "Home",
+    },
   },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }, 
   {
     path: '/login',
     name: 'login',
-    component: LoginView
+    component: LoginView,
+    meta: {
+      title: "Login",
+    },
   },
   {
     path: '/register',
     name: 'register',
-    component: RegisterView
+    component: RegisterView,
+    meta: {
+      title: "Register",
+    },
+},
+{
+    path:'/chat',
+    name:'chat',
+    component: ChatView,
+    meta: {
+      title: "Chat",
+    },
   }
 ]
 
@@ -39,17 +50,25 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEach(async (to, from, next) => {
-//   const response = await axios.get("/api/").catch((error) => {
-//     if (error.response) {
-//       console.warn("something went wrong");
-//     }
-//   });
+router.beforeEach(async (to, from, next) => {
+  const response = await axios.get("/api/whoami").catch((error) => {
+    if (error.response) {
+      console.warn("something went wrong");
+    }
+  });
 
-//   console.log(response);
-//   console.log(to);
-//   console.log(from);
-//   console.log(next);
-// });
+  // Check prints
+  // console.log(response.data);
+  await store.dispatch("storedinfo", response.data);
+  // console.log(store.state.username);
+  // console.log(store.state.rooms);
+
+  const isLoggedIn = store.state.status;
+  if (to.name === "login" && isLoggedIn) {
+    next("/");
+  } else {
+    next();
+  }
+});
 
 export default router;

@@ -91,7 +91,7 @@
                             class="ma-2 white--text"
                             rounded
                             x-large
-                            to="login">Sign Up</v-btn>
+                            @click="register()">Sign Up</v-btn>
                         </v-col>
                      </v-card-actions>
                   </v-card>
@@ -101,3 +101,33 @@
       </v-main>
     </v-app>
 </template>
+
+<script>
+import axios from "axios";
+
+export default {
+   name: "RegisterPage",
+   
+   data: () => ({
+    username: "",
+    password: "",
+   }),
+
+   methods: {
+    async register() {
+
+        const response = await axios
+        .post("/api/register", {
+            username: this.username,
+            password: this.password
+        })
+        .catch((error) => {
+            if (error.response) {
+                console.warn("something went wrong");
+            }
+        });
+        console.log(response.data);
+    }
+   }
+};
+</script>
