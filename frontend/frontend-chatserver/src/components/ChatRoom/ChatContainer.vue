@@ -2,8 +2,8 @@
   <v-app class="yellow lighten-4">
     <div id="chat-container" class="chat-container">
       <div id="chat">
-        <v-container class="overflow-y-auto">
-          <v-row class="mt-15 chat-list-container overflow-y-auto">
+        <v-container>
+          <v-row class="mt-15 chat-list-container">
             <v-list-item v-for="msg in chat" :key="msg.senderName">
               <v-list-item-content class="ml-1 py-2">
                 <v-list-item-title class="text-left"
@@ -67,30 +67,16 @@ let sseclient;
 
 export default {
   data: () => ({
-    chat: [
-      {
-        senderName: "gloria",
-        role: "Support",
-        text: "kik",
-        timestamp: "12:23, 3 Jul 2022",
-      },
-      {
-        senderName: "airbus",
-        role: "Carry",
-        text: "MK mai",
-        timestamp: "12:30, 3 Jul 2022",
-      },
-      {
-        senderName: "nut",
-        role: "Support",
-        text: "okk",
-        timestamp: "12:35, 3 Jul 2022",
-      },
-    ],
+    chat: store.state.storage.get(store.state.roomname),
     username: store.state.username,
     role: "Carry",
-    text: null,
+    text2: null,
   }),
+  watch: {
+    "$store.state.roomname": function () {
+      this.chat = store.state.storage.get(store.state.roomname);
+    },
+  },
   methods: {
     async sender() {
       await axios.post("api/message", {
@@ -99,14 +85,18 @@ export default {
         message: this.text2,
       });
     },
-    send(username, second) {
-      this.chat.push({
-        senderName: username,
-        role: this.role,
-        text: second,
-        timestamp: moment().format("h:mm a, Do MMM YYYY"),
-      });
-      this.text = null;
+    send(username, message, room) {
+      //   console.log("yes", room);
+      if (message != "") {
+        const msg = {
+          senderName: username,
+          role: this.role,
+          text: message,
+          timestamp: moment().format("h:mm a, Do MMM YYYY"),
+        };
+        this.$store.commit("addMessage", { message: msg, room: room });
+        this.text2 = "";
+      }
     },
   },
   created() {
@@ -117,9 +107,10 @@ export default {
       // polyfill: true,
     });
     sseclient.on("message", (msg) => {
-        console.log(msg);
-        this.send(store.state.username, msg.message);
-        });
+      console.log(msg);
+      //   console.log(msg.room);
+      this.send(msg.username, msg.message, msg.room);
+    });
     sseclient.on("error", (err) =>
       console.error("Failed to parse or lost connection:", err)
     );
@@ -132,6 +123,11 @@ export default {
   },
   beforeDestroy() {
     sseclient.disconnect();
+  },
+  mounted() {
+    if(!store.state.status) {
+      window.location = "/login";
+    }
   },
 };
 </script>

@@ -48,6 +48,15 @@ fn register(regisinfo: Json<UserInfo>) -> Json<String> {
     Json(format!("Username: {} logged in", user.username))
 }
 
+#[post("/addroom", format = "json", data = "<room>")]
+fn addroom(room: Json<AddRoom>) {
+    println!(
+        "{:?}", room
+    );
+    let connection = establish_connection();
+    addRoomByUsername(&connection, &room.username, &room.room);
+}
+
 
 #[get("/events")]
 async fn events(queue: &State<Sender<Message>>, mut end: Shutdown) -> EventStream![] {
@@ -142,5 +151,6 @@ fn rocket() ->  _ {
         events,
         whoami,
         logout,
+        addroom,
         ])
 }

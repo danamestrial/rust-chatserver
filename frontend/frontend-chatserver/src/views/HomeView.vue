@@ -1,9 +1,6 @@
 <template>
   <div class="home">
     <NavBar />
-    <v-app-bar id="appbar" color="light-blue lighten-3" flat app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-    </v-app-bar>
     <v-main>
       <EmptyRoom />
     </v-main>
@@ -17,6 +14,7 @@ import store from "@/store";
 
 export default {
   name: "HomeView",
+  title: "Circle OpenChat",
   data: () => ({
     username: "airbussssss",
     usericon: "mdi-airplane",
@@ -31,22 +29,6 @@ export default {
     if(!store.state.status) {
       window.location = "/login";
     }
-    // this.$sse
-    //   .create({
-    //     url: "http://localhost:8000/api/events",
-    //     format: "json",
-    //     //withCredentials: true,
-    //     // polyfill: true,
-    //   })
-    //   .on("message", (msg) => console.info("Message:", msg))
-    //   .on("error", (err) =>
-    //     console.error("Failed to parse or lost connection:", err)
-    //   )
-    //   .connect()
-    //   .then(() => {
-    //     console.log("Connected to events handle");
-    //   })
-    //   .catch((err) => console.error("Failed make initial connection:", err));
   },
   components: { EmptyRoom, NavBar },
 };

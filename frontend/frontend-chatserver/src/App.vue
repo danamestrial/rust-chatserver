@@ -1,6 +1,6 @@
 <template>
 <v-app>
-    <v-app-bar
+    <!-- <v-app-bar
       app
       color="primary"
       dark
@@ -40,7 +40,7 @@
         <span class="mr-2">Latest Release</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
-    </v-app-bar>
+    </v-app-bar> -->
     
     <v-main class = "pa-0">
       <router-view/>
@@ -49,43 +49,9 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   name: "App",
-  // mounted() {
-  //   this.$sse
-  //     .create({
-  //       url: "http://localhost:8000/api/events",
-  //       format: "json",
-  //       //withCredentials: true,
-  //       // polyfill: true,
-  //     })
-  //     .on("message", (msg) => console.info("Message:", msg))
-  //     .on("error", (err) =>
-  //       console.error("Failed to parse or lost connection:", err)
-  //     )
-  //     .connect()
-  //     .then(() => {console.log("Connected to events handle")})
-  //     .catch((err) => console.error("Failed make initial connection:", err));
-  // },
-
-  methods: {
-    test() {
-    axios.post("api/message", {
-      room: "1",
-      userid: 69,
-      message: "hello world",
-    });
-    },
-    // test() {
-    //   let formdata = new FormData();
-    //   formdata.append("room", "1");
-    //   formdata.append("username", "airbus");
-    //   formdata.append("message", "hellowordl");
-    //   axios.post("/api/message", formdata);
-    // },
-  },
+  
 };
 </script>
 
