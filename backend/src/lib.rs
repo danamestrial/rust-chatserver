@@ -14,7 +14,7 @@ use schema::posts::dsl::*;
 use std::io;
 use models::{Post, NewUser};
 use bcrypt::{DEFAULT_COST, hash, verify};
-use serde_json::Result;
+use serde_json::*;
 
 pub fn establish_connection() -> PgConnection {
     dotenv().ok();
@@ -59,6 +59,16 @@ pub fn getRoomsByUsername(conn: &PgConnection, other_username: String) -> String
         .expect("Error loading posts");
 
     results
+}
+
+pub fn addRoomByUsername(conn: &PgConnection, other_username: &String, room_name: &String) -> Post {
+    let user_rooms: String = posts.filter(username.eq(other_username))
+    .select(rooms).first(conn).expect("Whoops cant add room");
+
+    let mut vec: Vec<String> = serde_json::from_str(&user_rooms).unwrap();
+    vec.push(room_name.to_string());
+    diesel::update(posts.filter(username.eq(other_username))).set(rooms.eq(serde_json::to_string(&vec).unwrap()))
+    .get_result(conn).expect("Add Room ded")
 }
 
 // pub fn findUserByUsername<'a>(conn: &PgConnection, other_username: &'a str)

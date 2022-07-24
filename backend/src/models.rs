@@ -38,3 +38,9 @@ pub struct Who {
     pub status: bool,
     pub rooms: String,
 }
+
+#[derive(Debug, Clone, FromForm ,Serialize, Deserialize)]
+pub struct AddRoom {
+    pub username: String,
+    pub room: String,
+}
