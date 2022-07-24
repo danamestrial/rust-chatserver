@@ -1,9 +1,16 @@
 <template>
   <v-app class="yellow lighten-4">
+  
     <div id="chat-container" class="chat-container">
       <div id="chat">
-        <v-container>
-          <v-row class="mt-15 chat-list-container">
+        <v-container
+          id="scroll-target"
+          style="max-height: 600px"
+          class="overflow-y-auto">
+
+          <v-row
+            v-chat-scroll="{ enable: false }"
+            class="mt-15 chat-list-container">
             <v-list-item v-for="msg in chat" :key="msg.senderName">
               <v-list-item-content class="ml-1 py-2">
                 <v-list-item-title class="text-left"
